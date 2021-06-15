@@ -31,7 +31,9 @@ class Friendship < ApplicationRecord
   # validations
 
   def not_already_exist
-    errors.add(:unique_friendship, 'Friendship already exist!') if find_relation(user, friend)
+    return if Friendship.where(user: user, friend: friend).empty?
+
+    errors.add(:unique_friendship, 'Friendship already exist!')
   end
 
   def not_friending_self
@@ -45,11 +47,11 @@ class Friendship < ApplicationRecord
   end
 
   def notify_requested
-    friend.notifications.create(notifiable: self) if sender?
+    create_notification(user: friend) if sender?
   end
 
   def notify_requester
-    friend.notifications.create(notifiable: self) unless status_before_last_save.zero?
+    create_notification(user: friend) unless status_before_last_save.zero?
   end
 
 end

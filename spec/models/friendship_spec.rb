@@ -41,16 +41,10 @@ RSpec.describe Friendship, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:friend) }
-    it { is_expected.to have_many(:notifications) }
+    it { is_expected.to have_one(:notification).dependent(:destroy) }
   end
 
   describe 'methods' do
-    describe '#find_for_both(user1_id, user2_id)' do
-      it 'returns any friendship with both users in any combintaion' do
-        friendship = FactoryBot.create(:friendship, user: user, friend: friend)
-        expect(Friendship.find_for_both(user.id, friend.id)).to eq(friendship)
-      end
-    end
   end
 
   describe 'callbacks' do
