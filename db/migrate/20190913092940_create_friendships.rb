@@ -6,7 +6,8 @@ class CreateFriendships < ActiveRecord::Migration[5.2]
       t.references :user, index: true, foreign_key: true
       t.references :friend, index: true, foreign_key: { to_table: 'users' }
       t.integer :status
-    end
 
+      t.timestamps
     end
+  end
 end

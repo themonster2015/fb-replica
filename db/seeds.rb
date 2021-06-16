@@ -1,6 +1,6 @@
 require 'factory_bot_rails'
 
-FactoryBot.create(:user, email: "example@mail.com", password: 'foobar', first_name: 'demo', last_name: 'user')
+FactoryBot.create(:user, email: "example@mail.com", password: 'foobar', first_name: 'Demo', last_name: 'User')
 
 # users
 11.times.each { |i| FactoryBot.create(:user) }
