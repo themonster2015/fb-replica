@@ -43,6 +43,12 @@ Clone the repo and then install the needed gems:
  bundle install --without production
 ```
 
+Create the database:
+
+```console
+ rails db:create
+```
+
 Migrate the database:
 
 ```console
